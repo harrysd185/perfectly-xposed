@@ -1,10 +1,6 @@
 {
-  "portrait": "https://picsum.photos/id/64/800/1000",
+  "portrait": "/images/uploads/img_1405.jpg",
   "lead": "I photograph the moments most people walk past.",
-  "body": "I'm a portrait and landscape photographer based in the Pacific Northwest, working with couples, families, and brands who want images that feel like themselves rather than a pose. My approach is unhurried and natural-light led.\n\nOver the past decade I've shot on six continents, from studio sessions to remote alpine mornings — always chasing the same thing: honest light and a little bit of stillness.",
-  "stats": [
-    { "number": "10+", "label": "Years shooting" },
-    { "number": "240", "label": "Sessions delivered" },
-    { "number": "6", "label": "Continents" }
-  ]
+  "body": "I'm a photographer based in Upstate New York, drawn to the small, real moments that are easy to miss and impossible to stage. Whether it's a portrait, a celebration, or a quiet afternoon, I'm looking for the frame you'll come back to years from now.\nMy approach is unhurried and natural-light led — less about posing, more about paying attention. The goal is simple: images that feel like the moment actually felt.",
+  "stats": []
 }
