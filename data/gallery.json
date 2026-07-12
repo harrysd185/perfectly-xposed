@@ -2,7 +2,19 @@
   "photos": [
     {
       "category": "portrait",
+      "image": "/images/uploads/img_6236.jpg"
+    },
+    {
+      "category": "portrait",
       "image": "/images/uploads/img_6237-1-.jpg"
+    },
+    {
+      "category": "portrait",
+      "image": "/images/uploads/img_6235.jpg"
+    },
+    {
+      "category": "portrait",
+      "image": "/images/uploads/img_6234.jpg"
     }
   ]
 }
