@@ -60,3 +60,24 @@ collections:
                   - { label: "Portrait", value: "portrait" }
                   - { label: "Landscape", value: "landscape" }
                   - { label: "Street", value: "street" }
+
+  - name: "about"
+    label: "About"
+    files:
+      - name: "about"
+        label: "About section"
+        file: "data/about.json"
+        description: "Your photo, headline, bio, and the three stats shown on the site."
+        fields:
+          - { name: "portrait", label: "Your photo", widget: "image" }
+          - { name: "lead", label: "Headline", widget: "string" }
+          - { name: "body", label: "Bio (leave a blank line between paragraphs)", widget: "text" }
+          - name: "stats"
+            label: "Stats"
+            label_singular: "Stat"
+            widget: "list"
+            max: 3
+            summary: "{{fields.number}} — {{fields.label}}"
+            fields:
+              - { name: "number", label: "Number", widget: "string" }
+              - { name: "label", label: "Label", widget: "string" }

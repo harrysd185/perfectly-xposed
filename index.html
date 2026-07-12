@@ -468,21 +468,23 @@
     </div>
     <div class="about-grid">
       <div class="about-portrait reveal">
-        <img src="https://picsum.photos/id/64/800/1000" alt="Portrait of the photographer" loading="lazy" />
+        <img id="aboutPortrait" src="https://picsum.photos/id/64/800/1000" alt="Portrait of the photographer" loading="lazy" />
       </div>
       <div class="about-body reveal">
-        <p class="lead">I photograph the moments most people walk past.</p>
-        <p>
-          I'm a portrait and landscape photographer based in the Pacific Northwest,
-          working with couples, families, and brands who want images that feel like
-          themselves rather than a pose. My approach is unhurried and natural-light led.
-        </p>
-        <p>
-          Over the past decade I've shot on six continents, from studio sessions to
-          remote alpine mornings — always chasing the same thing: honest light and a
-          little bit of stillness.
-        </p>
-        <div class="about-facts">
+        <p class="lead" id="aboutLead">I photograph the moments most people walk past.</p>
+        <div id="aboutParas">
+          <p>
+            I'm a portrait and landscape photographer based in the Pacific Northwest,
+            working with couples, families, and brands who want images that feel like
+            themselves rather than a pose. My approach is unhurried and natural-light led.
+          </p>
+          <p>
+            Over the past decade I've shot on six continents, from studio sessions to
+            remote alpine mornings — always chasing the same thing: honest light and a
+            little bit of stillness.
+          </p>
+        </div>
+        <div class="about-facts" id="aboutFacts">
           <div class="f"><div class="n">10+</div><div class="l">Years shooting</div></div>
           <div class="f"><div class="n">240</div><div class="l">Sessions delivered</div></div>
           <div class="f"><div class="n">6</div><div class="l">Continents</div></div>
@@ -663,6 +665,28 @@
     });
   }
 
+  // --- Load About section from data/about.json (editable in the CMS) ---
+  async function loadAbout() {
+    let a = null;
+    try {
+      const res = await fetch('data/about.json', { cache: 'no-store' });
+      a = await res.json();
+    } catch (e) { return; } // keep the built-in text if the data file isn't there yet
+    if (!a) return;
+    const portrait = document.getElementById('aboutPortrait');
+    const lead = document.getElementById('aboutLead');
+    const paras = document.getElementById('aboutParas');
+    const facts = document.getElementById('aboutFacts');
+    if (a.portrait && portrait) portrait.src = a.portrait;
+    if (a.lead && lead) lead.textContent = a.lead;
+    if (a.body && paras) {
+      paras.innerHTML = a.body.trim().split(/\n\s*\n/).map(p => `<p>${esc(p.trim()).replace(/\n/g, '<br>')}</p>`).join('');
+    }
+    if (Array.isArray(a.stats) && facts) {
+      facts.innerHTML = a.stats.map(s => `<div class="f"><div class="n">${esc(s.number)}</div><div class="l">${esc(s.label)}</div></div>`).join('');
+    }
+  }
+
   // --- Scroll reveal (runs after gallery renders so new shots animate too) ---
   function initReveal() {
     const reveals = document.querySelectorAll('.reveal');
@@ -681,6 +705,7 @@
   // --- Boot ---
   (async () => {
     await loadGallery();
+    await loadAbout();
     initFilters();
     initReveal();
   })();
