@@ -1,0 +1,54 @@
+# ============================================================================
+#  Perfectly Xposed — editor configuration
+# ============================================================================
+#  The three lines marked  >>> FILL IN <<<  are the only things you edit here,
+#  and DecapBridge gives you the exact values during setup (see README.md).
+# ============================================================================
+
+backend:
+  name: git-gateway
+  branch: main
+  # >>> FILL IN <<<  your GitHub repo, e.g.  yourusername/perfectly-xposed
+  repo: YOUR-GITHUB-USERNAME/perfectly-xposed
+  # >>> FILL IN <<<  from DecapBridge (looks like the two URLs below)
+  identity_url: https://auth.decapbridge.com/sites/YOUR-DECAPBRIDGE-SITE-ID
+  gateway_url: https://gateway.decapbridge.com
+
+# Where uploaded photos are stored in the repo, and how they're referenced on the site
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+# Nicer commit messages when you save
+commit_messages:
+  create: 'Add photo "{{slug}}" via editor'
+  update: 'Update gallery via editor'
+  delete: 'Remove photo "{{slug}}" via editor'
+  uploadMedia: 'Upload photo {{path}}'
+  deleteMedia: 'Remove photo {{path}}'
+
+collections:
+  - name: "gallery"
+    label: "Gallery"
+    files:
+      - name: "photos"
+        label: "Gallery photos"
+        file: "data/gallery.json"
+        description: "Add, edit, remove, and drag to reorder the photos in your gallery."
+        fields:
+          - name: "photos"
+            label: "Photos"
+            label_singular: "Photo"
+            widget: "list"
+            summary: "{{fields.title}} — {{fields.location}}"
+            fields:
+              - { name: "image", label: "Photo", widget: "image" }
+              - { name: "title", label: "Title / caption", widget: "string", required: false }
+              - { name: "location", label: "Location", widget: "string", required: false }
+              - name: "category"
+                label: "Category"
+                widget: "select"
+                default: "portrait"
+                options:
+                  - { label: "Portrait", value: "portrait" }
+                  - { label: "Landscape", value: "landscape" }
+                  - { label: "Street", value: "street" }

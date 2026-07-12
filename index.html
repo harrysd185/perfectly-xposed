@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!-- ============================================================
+     PHOTOGRAPHY PORTFOLIO
+     To make this yours, search and replace:
+       • "Perfectly Xposed"  → your name / studio name
+       • the picsum.photos image URLs → your own photo files
+       • the copy in About, Pricing, and Contact
+       • the email in the contact section + footer
+     ============================================================ -->
+<title>Perfectly Xposed — Photography</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Hanken+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --paper: #f7f7f4;
+    --paper-2: #ffffff;
+    --ink: #1a1a18;
+    --muted: #8a8a82;
+    --line: #e3e3dc;
+    --line-strong: #cfcfc6;
+
+    --serif: "Instrument Serif", Georgia, serif;
+    --sans: "Hanken Grotesk", -apple-system, BlinkMacSystemFont, sans-serif;
+
+    --gap: clamp(1rem, 4vw, 3rem);
+    --edge: clamp(1.25rem, 5vw, 5rem);
+    --maxw: 1400px;
+
+    --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  img { display: block; width: 100%; height: auto; }
+
+  a { color: inherit; text-decoration: none; }
+
+  ::selection { background: var(--ink); color: var(--paper); }
+
+  :focus-visible {
+    outline: 2px solid var(--ink);
+    outline-offset: 3px;
+  }
+
+  .eyebrow {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    font-weight: 500;
+    color: var(--muted);
+  }
+
+  /* ---------- NAV ---------- */
+  header.nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.15rem var(--edge);
+    background: color-mix(in srgb, var(--paper) 78%, transparent);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.4s var(--ease), padding 0.4s var(--ease);
+  }
+  header.nav.scrolled {
+    border-bottom-color: var(--line);
+    padding-top: 0.85rem;
+    padding-bottom: 0.85rem;
+  }
+  .wordmark {
+    font-family: var(--serif);
+    font-size: 1.65rem;
+    letter-spacing: 0.01em;
+    line-height: 1;
+  }
+  .navlinks {
+    display: flex;
+    gap: clamp(1rem, 2.5vw, 2.4rem);
+    align-items: center;
+  }
+  .navlinks a {
+    font-size: 0.82rem;
+    letter-spacing: 0.04em;
+    color: var(--ink);
+    position: relative;
+    padding: 0.2rem 0;
+  }
+  .navlinks a::after {
+    content: "";
+    position: absolute;
+    left: 0; bottom: -2px;
+    width: 100%; height: 1px;
+    background: var(--ink);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.4s var(--ease);
+  }
+  .navlinks a:hover::after { transform: scaleX(1); transform-origin: left; }
+  .nav-menu-btn { display: none; }
+
+  /* ---------- HERO ---------- */
+  .hero {
+    padding: clamp(8rem, 20vh, 13rem) var(--edge) clamp(3rem, 8vh, 6rem);
+    max-width: var(--maxw);
+    margin: 0 auto;
+  }
+  .hero-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: clamp(1.5rem, 4vh, 3rem);
+  }
+  .hero h1 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(3.4rem, 13vw, 11rem);
+    line-height: 0.92;
+    letter-spacing: -0.01em;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--muted);
+  }
+  .hero-statement {
+    max-width: 42ch;
+    font-size: clamp(1rem, 1.6vw, 1.2rem);
+    color: #46463f;
+    margin-top: clamp(1.5rem, 4vh, 2.5rem);
+  }
+  .scroll-cue {
+    margin-top: clamp(2rem, 6vh, 4rem);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+  }
+  .scroll-cue .line {
+    width: 46px; height: 1px; background: var(--line-strong);
+    position: relative; overflow: hidden;
+  }
+  .scroll-cue .line::after {
+    content:""; position:absolute; inset:0;
+    background: var(--ink);
+    transform: translateX(-100%);
+    animation: sweep 2.6s var(--ease) infinite;
+  }
+  @keyframes sweep {
+    0% { transform: translateX(-100%); }
+    50% { transform: translateX(0); }
+    100% { transform: translateX(100%); }
+  }
+
+  /* featured wide image */
+  .featured {
+    max-width: var(--maxw);
+    margin: 0 auto clamp(4rem, 10vh, 8rem);
+    padding: 0 var(--edge);
+  }
+  .featured-frame { overflow: hidden; }
+  .featured-frame img {
+    aspect-ratio: 16 / 8;
+    object-fit: cover;
+    transition: transform 1.2s var(--ease);
+  }
+  .featured-frame:hover img { transform: scale(1.03); }
+  .featured-caption {
+    display: flex; justify-content: space-between;
+    margin-top: 0.9rem; font-size: 0.8rem; color: var(--muted);
+    letter-spacing: 0.03em;
+  }
+
+  /* ---------- SECTION SHELL ---------- */
+  section { max-width: var(--maxw); margin: 0 auto; padding: clamp(4rem, 9vh, 7rem) var(--edge); }
+  .section-head {
+    display: flex; align-items: flex-end; justify-content: space-between;
+    gap: 2rem; flex-wrap: wrap;
+    margin-bottom: clamp(2rem, 5vh, 3.5rem);
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 1.4rem;
+  }
+  .section-head h2 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(2rem, 5.5vw, 3.6rem);
+    line-height: 1;
+    letter-spacing: -0.01em;
+  }
+
+  /* ---------- GALLERY ---------- */
+  .filters { display: flex; gap: 1.6rem; flex-wrap: wrap; }
+  .filters button {
+    background: none; border: none; cursor: pointer;
+    font-family: var(--sans); font-size: 0.85rem;
+    letter-spacing: 0.03em; color: var(--muted);
+    padding: 0.2rem 0; position: relative;
+    transition: color 0.3s var(--ease);
+  }
+  .filters button::after {
+    content:""; position:absolute; left:0; bottom:-3px;
+    width:100%; height:1px; background: var(--ink);
+    transform: scaleX(0); transform-origin:left;
+    transition: transform 0.35s var(--ease);
+  }
+  .filters button:hover { color: var(--ink); }
+  .filters button[aria-pressed="true"] { color: var(--ink); }
+  .filters button[aria-pressed="true"]::after { transform: scaleX(1); }
+
+  .grid {
+    columns: 3 300px;
+    column-gap: var(--gap);
+  }
+  .shot {
+    break-inside: avoid;
+    margin-bottom: var(--gap);
+    position: relative;
+    overflow: hidden;
+    background: var(--line);
+    cursor: pointer;
+    transition: opacity 0.5s var(--ease), transform 0.5s var(--ease);
+  }
+  .shot.hide { display: none; }
+  .shot img {
+    transition: transform 1s var(--ease), filter 0.6s var(--ease);
+  }
+  .shot:hover img { transform: scale(1.05); }
+  .shot .meta {
+    position: absolute; left: 0; right: 0; bottom: 0;
+    padding: 1.1rem 1.2rem;
+    display: flex; justify-content: space-between; align-items: flex-end;
+    color: #fff;
+    background: linear-gradient(to top, rgba(0,0,0,0.55), rgba(0,0,0,0));
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.45s var(--ease), transform 0.45s var(--ease);
+  }
+  .shot:hover .meta, .shot:focus-within .meta { opacity: 1; transform: translateY(0); }
+  .shot .meta .t { font-family: var(--serif); font-size: 1.15rem; line-height: 1; }
+  .shot .meta .loc { font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.85; }
+
+  /* ---------- ABOUT ---------- */
+  .about-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+    gap: clamp(2rem, 6vw, 5rem);
+    align-items: center;
+  }
+  .about-portrait { overflow: hidden; }
+  .about-portrait img { aspect-ratio: 4/5; object-fit: cover; }
+  .about-body p { font-size: clamp(1rem, 1.5vw, 1.15rem); color: #3a3a34; margin-bottom: 1.2rem; max-width: 52ch; }
+  .about-body .lead {
+    font-family: var(--serif);
+    font-size: clamp(1.5rem, 3.2vw, 2.3rem);
+    line-height: 1.25;
+    color: var(--ink);
+    margin-bottom: 1.8rem;
+  }
+  .about-facts {
+    display: flex; gap: clamp(1.5rem, 4vw, 3.5rem); flex-wrap: wrap;
+    margin-top: 2.2rem; padding-top: 1.8rem; border-top: 1px solid var(--line);
+  }
+  .about-facts .f .n { font-family: var(--serif); font-size: 2rem; line-height: 1; }
+  .about-facts .f .l { font-size: 0.75rem; color: var(--muted); letter-spacing: 0.06em; margin-top: 0.35rem; }
+
+  /* ---------- PRICING ---------- */
+  .tiers { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--gap); }
+  .tier {
+    border: 1px solid var(--line);
+    padding: clamp(1.6rem, 3vw, 2.4rem);
+    display: flex; flex-direction: column;
+    background: var(--paper-2);
+    transition: border-color 0.4s var(--ease), transform 0.4s var(--ease);
+  }
+  .tier:hover { border-color: var(--ink); transform: translateY(-4px); }
+  .tier .tier-name { font-family: var(--serif); font-size: 1.7rem; margin-bottom: 0.3rem; }
+  .tier .tier-note { font-size: 0.82rem; color: var(--muted); margin-bottom: 1.6rem; }
+  .tier .price { font-family: var(--serif); font-size: 2.6rem; line-height: 1; margin-bottom: 0.4rem; }
+  .tier .price span { font-family: var(--sans); font-size: 0.8rem; color: var(--muted); letter-spacing: 0.04em; }
+  .tier ul { list-style: none; margin: 1.6rem 0; flex: 1; }
+  .tier li {
+    font-size: 0.9rem; color: #3a3a34; padding: 0.55rem 0;
+    border-top: 1px solid var(--line); display: flex; gap: 0.7rem;
+  }
+  .tier li::before { content: "—"; color: var(--muted); }
+  .tier .book {
+    text-align: center; padding: 0.85rem; border: 1px solid var(--ink);
+    font-size: 0.85rem; letter-spacing: 0.04em;
+    transition: background 0.35s var(--ease), color 0.35s var(--ease);
+  }
+  .tier .book:hover { background: var(--ink); color: var(--paper); }
+
+  /* ---------- CONTACT ---------- */
+  .contact-grid {
+    display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: clamp(2rem, 6vw, 5rem);
+  }
+  .contact-intro .lead {
+    font-family: var(--serif); font-size: clamp(1.6rem, 3.5vw, 2.6rem);
+    line-height: 1.2; margin-bottom: 1.4rem;
+  }
+  .contact-intro p { color: #3a3a34; max-width: 40ch; margin-bottom: 1.8rem; }
+  .contact-intro a.mail {
+    font-family: var(--serif); font-size: 1.5rem;
+    border-bottom: 1px solid var(--line-strong); padding-bottom: 2px;
+    transition: border-color 0.35s var(--ease);
+  }
+  .contact-intro a.mail:hover { border-color: var(--ink); }
+
+  form .row { display: flex; gap: 1rem; }
+  form .field { margin-bottom: 1.3rem; flex: 1; }
+  form label { display: block; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.14em; color: var(--muted); margin-bottom: 0.5rem; }
+  form input, form textarea {
+    width: 100%; background: transparent; border: none;
+    border-bottom: 1px solid var(--line-strong);
+    font-family: var(--sans); font-size: 1rem; color: var(--ink);
+    padding: 0.5rem 0; transition: border-color 0.35s var(--ease);
+  }
+  form input:focus, form textarea:focus { outline: none; border-bottom-color: var(--ink); }
+  form textarea { resize: vertical; min-height: 90px; }
+  form button.send {
+    margin-top: 0.6rem; background: var(--ink); color: var(--paper);
+    border: 1px solid var(--ink); padding: 0.9rem 2.2rem; cursor: pointer;
+    font-family: var(--sans); font-size: 0.85rem; letter-spacing: 0.06em;
+    transition: background 0.35s var(--ease), color 0.35s var(--ease);
+  }
+  form button.send:hover { background: transparent; color: var(--ink); }
+  .form-note { margin-top: 1rem; font-size: 0.82rem; color: var(--muted); min-height: 1.2em; }
+
+  /* ---------- FOOTER ---------- */
+  footer.site {
+    border-top: 1px solid var(--line);
+    padding: clamp(3rem, 7vh, 5rem) var(--edge);
+    max-width: var(--maxw); margin: 0 auto;
+    display: flex; justify-content: space-between; align-items: flex-end;
+    flex-wrap: wrap; gap: 2rem;
+  }
+  footer .fword { font-family: var(--serif); font-size: clamp(2.5rem, 8vw, 5rem); line-height: 0.9; }
+  footer .fmeta { text-align: right; font-size: 0.82rem; color: var(--muted); }
+  footer .fmeta a { border-bottom: 1px solid var(--line); }
+  footer .fmeta a:hover { border-color: var(--ink); color: var(--ink); }
+  footer .socials { display: flex; gap: 1.2rem; margin-top: 0.8rem; justify-content: flex-end; }
+
+  /* ---------- REVEAL ---------- */
+  .reveal { opacity: 0; transform: translateY(22px); }
+  .reveal.in { opacity: 1; transform: none; transition: opacity 0.9s var(--ease), transform 0.9s var(--ease); }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 820px) {
+    .about-grid { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .tiers { grid-template-columns: 1fr; }
+    .grid { columns: 2 220px; }
+  }
+  @media (max-width: 620px) {
+    .navlinks { display: none; }
+    .navlinks.open {
+      display: flex; flex-direction: column;
+      position: absolute; top: 100%; left: 0; right: 0;
+      background: var(--paper); padding: 1.5rem var(--edge);
+      border-bottom: 1px solid var(--line); gap: 1rem;
+    }
+    .nav-menu-btn {
+      display: block; background: none; border: none; cursor: pointer;
+      font-family: var(--sans); font-size: 0.82rem; letter-spacing: 0.06em;
+    }
+    form .row { flex-direction: column; gap: 0; }
+    .grid { columns: 1; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition-duration: 0.01ms !important; }
+    html { scroll-behavior: auto; }
+    .reveal { opacity: 1; transform: none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="nav" id="nav">
+  <a href="#top" class="wordmark">Perfectly Xposed</a>
+  <button class="nav-menu-btn" id="menuBtn" aria-expanded="false">Menu</button>
+  <nav class="navlinks" id="navlinks">
+    <a href="#work">Work</a>
+    <a href="#about">About</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-top">
+      <span class="eyebrow reveal">Photographer · Available worldwide</span>
+      <span class="eyebrow reveal">Est. 2016</span>
+    </div>
+    <h1 class="reveal">Light,<br />held <em>still.</em></h1>
+    <p class="hero-statement reveal">
+      A portfolio of portraiture, landscape and quiet everyday moments —
+      photographed with natural light and a preference for restraint.
+    </p>
+    <a href="#work" class="scroll-cue reveal">
+      <span class="line"></span> Selected work
+    </a>
+  </div>
+
+  <!-- FEATURED -->
+  <div class="featured reveal">
+    <div class="featured-frame">
+      <img src="https://picsum.photos/id/1015/1600/800" alt="Featured photograph — river running through a valley" loading="lazy" />
+    </div>
+    <div class="featured-caption">
+      <span>Still Water No. 4</span>
+      <span>Cascade Range, OR</span>
+    </div>
+  </div>
+
+  <!-- WORK -->
+  <section id="work">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">Selected work</span>
+        <h2>The Gallery</h2>
+      </div>
+      <div class="filters" role="group" aria-label="Filter photographs">
+        <button data-filter="all" aria-pressed="true">All</button>
+        <button data-filter="portrait" aria-pressed="false">Portraits</button>
+        <button data-filter="landscape" aria-pressed="false">Landscape</button>
+        <button data-filter="street" aria-pressed="false">Street</button>
+      </div>
+    </div>
+
+    <div class="grid" id="grid"></div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">About</span>
+        <h2>Behind the lens</h2>
+      </div>
+    </div>
+    <div class="about-grid">
+      <div class="about-portrait reveal">
+        <img src="https://picsum.photos/id/64/800/1000" alt="Portrait of the photographer" loading="lazy" />
+      </div>
+      <div class="about-body reveal">
+        <p class="lead">I photograph the moments most people walk past.</p>
+        <p>
+          I'm a portrait and landscape photographer based in the Pacific Northwest,
+          working with couples, families, and brands who want images that feel like
+          themselves rather than a pose. My approach is unhurried and natural-light led.
+        </p>
+        <p>
+          Over the past decade I've shot on six continents, from studio sessions to
+          remote alpine mornings — always chasing the same thing: honest light and a
+          little bit of stillness.
+        </p>
+        <div class="about-facts">
+          <div class="f"><div class="n">10+</div><div class="l">Years shooting</div></div>
+          <div class="f"><div class="n">240</div><div class="l">Sessions delivered</div></div>
+          <div class="f"><div class="n">6</div><div class="l">Continents</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section id="pricing">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">Pricing</span>
+        <h2>Sessions</h2>
+      </div>
+      <p style="max-width:34ch;color:var(--muted);font-size:0.9rem;">
+        Every booking includes a pre-shoot call, professional editing, and a private online gallery.
+      </p>
+    </div>
+    <div class="tiers">
+      <div class="tier reveal">
+        <div class="tier-name">Portrait</div>
+        <div class="tier-note">Individuals & couples</div>
+        <div class="price">$350<span> / session</span></div>
+        <ul>
+          <li>90-minute session</li>
+          <li>One location</li>
+          <li>40+ edited images</li>
+          <li>Online gallery, 12 months</li>
+        </ul>
+        <a href="#contact" class="book">Book portrait</a>
+      </div>
+      <div class="tier reveal">
+        <div class="tier-name">Event</div>
+        <div class="tier-note">Weddings & gatherings</div>
+        <div class="price">$1,200<span> / day</span></div>
+        <ul>
+          <li>Up to 6 hours coverage</li>
+          <li>Two locations</li>
+          <li>250+ edited images</li>
+          <li>Highlight gallery + prints</li>
+        </ul>
+        <a href="#contact" class="book">Book event</a>
+      </div>
+      <div class="tier reveal">
+        <div class="tier-name">Commercial</div>
+        <div class="tier-note">Brands & products</div>
+        <div class="price">Custom</div>
+        <ul>
+          <li>Scoped to your brief</li>
+          <li>Studio or on-location</li>
+          <li>Licensed for commercial use</li>
+          <li>Fast turnaround available</li>
+        </ul>
+        <a href="#contact" class="book">Request a quote</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">Contact</span>
+        <h2>Let's work together</h2>
+      </div>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-intro reveal">
+        <p class="lead">Have a session in mind?</p>
+        <p>Tell me a little about what you're looking for and your rough dates. I reply to every enquiry within two business days.</p>
+        <a class="mail" href="mailto:hello@perfectlyxposed.com">hello@perfectlyxposed.com</a>
+      </div>
+      <div class="reveal">
+        <form id="bookingForm" novalidate>
+          <div class="row">
+            <div class="field">
+              <label for="name">Name</label>
+              <input id="name" name="name" type="text" autocomplete="name" required />
+            </div>
+            <div class="field">
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" autocomplete="email" required />
+            </div>
+          </div>
+          <div class="row">
+            <div class="field">
+              <label for="type">Session type</label>
+              <input id="type" name="type" type="text" placeholder="Portrait, event…" />
+            </div>
+            <div class="field">
+              <label for="date">Preferred date</label>
+              <input id="date" name="date" type="text" placeholder="e.g. Sept 2026" />
+            </div>
+          </div>
+          <div class="field">
+            <label for="message">Details</label>
+            <textarea id="message" name="message" required></textarea>
+          </div>
+          <button type="submit" class="send">Send enquiry</button>
+          <p class="form-note" id="formNote" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site">
+  <div class="fword">Perfectly Xposed</div>
+  <div class="fmeta">
+    <div>Photography · Pacific Northwest</div>
+    <div style="margin-top:0.4rem;"><a href="mailto:hello@perfectlyxposed.com">hello@perfectlyxposed.com</a></div>
+    <div class="socials">
+      <a href="#">Instagram</a>
+      <a href="#">Behance</a>
+      <a href="#">Journal</a>
+    </div>
+    <div style="margin-top:1.2rem;font-size:0.72rem;">© 2026 Perfectly Xposed. All rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+  // --- Nav scroll state ---
+  const nav = document.getElementById('nav');
+  const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 24);
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  // --- Mobile menu ---
+  const menuBtn = document.getElementById('menuBtn');
+  const navlinks = document.getElementById('navlinks');
+  menuBtn.addEventListener('click', () => {
+    const open = navlinks.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', open);
+    menuBtn.textContent = open ? 'Close' : 'Menu';
+  });
+  navlinks.addEventListener('click', (e) => {
+    if (e.target.tagName === 'A') {
+      navlinks.classList.remove('open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+      menuBtn.textContent = 'Menu';
+    }
+  });
+
+  // --- Load gallery from data/gallery.json, then wire up filtering ---
+  const esc = (s) => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+  async function loadGallery() {
+    const grid = document.getElementById('grid');
+    let photos = [];
+    try {
+      const res = await fetch('data/gallery.json', { cache: 'no-store' });
+      const data = await res.json();
+      photos = Array.isArray(data) ? data : (data.photos || []);
+    } catch (e) {
+      console.error('Could not load gallery data:', e);
+    }
+    grid.innerHTML = photos.map(p => `
+      <figure class="shot reveal" data-cat="${esc((p.category || '').toLowerCase())}" tabindex="0">
+        <img src="${esc(p.image)}" alt="${esc(p.title || 'Photograph')}" loading="lazy" />
+        <figcaption class="meta"><span class="t">${esc(p.title)}</span><span class="loc">${esc(p.location)}</span></figcaption>
+      </figure>`).join('');
+  }
+
+  function initFilters() {
+    const filterBtns = document.querySelectorAll('.filters button');
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.setAttribute('aria-pressed', 'false'));
+        btn.setAttribute('aria-pressed', 'true');
+        const f = btn.dataset.filter;
+        document.querySelectorAll('.shot').forEach(shot => {
+          const show = f === 'all' || shot.dataset.cat === f;
+          shot.classList.toggle('hide', !show);
+        });
+      });
+    });
+  }
+
+  // --- Scroll reveal (runs after gallery renders so new shots animate too) ---
+  function initReveal() {
+    const reveals = document.querySelectorAll('.reveal');
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(en => {
+          if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+      reveals.forEach(el => io.observe(el));
+    } else {
+      reveals.forEach(el => el.classList.add('in'));
+    }
+  }
+
+  // --- Boot ---
+  (async () => {
+    await loadGallery();
+    initFilters();
+    initReveal();
+  })();
+
+  // --- Contact form (front-end only) ---
+  const form = document.getElementById('bookingForm');
+  const note = document.getElementById('formNote');
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const message = document.getElementById('message').value.trim();
+    if (!name || !email || !message) {
+      note.textContent = 'Please add your name, email, and a few details.';
+      note.style.color = '#a33';
+      return;
+    }
+    note.style.color = 'var(--muted)';
+    note.textContent = 'Thanks, ' + name + ' — your enquiry is ready. Connect a form service to receive it by email.';
+    form.reset();
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+{
+  "photos": [
+    { "image": "https://picsum.photos/id/1018/800/1000", "title": "Ridgeline", "location": "Dolomites", "category": "landscape" },
+    { "image": "https://picsum.photos/id/1005/800/900", "title": "Aria", "location": "Studio", "category": "portrait" },
+    { "image": "https://picsum.photos/id/1067/800/1100", "title": "Crossing", "location": "Lisbon", "category": "street" },
+    { "image": "https://picsum.photos/id/1036/800/560", "title": "Low Cloud", "location": "Snowdonia", "category": "landscape" },
+    { "image": "https://picsum.photos/id/338/800/1000", "title": "Field Notes", "location": "Provence", "category": "portrait" },
+    { "image": "https://picsum.photos/id/164/800/620", "title": "Late Trade", "location": "Tokyo", "category": "street" },
+    { "image": "https://picsum.photos/id/1016/800/1050", "title": "Red Earth", "location": "Arizona", "category": "landscape" },
+    { "image": "https://picsum.photos/id/823/800/860", "title": "Quiet Hour", "location": "Studio", "category": "portrait" },
+    { "image": "https://picsum.photos/id/249/800/1000", "title": "Awning", "location": "Hanoi", "category": "street" },
+    { "image": "https://picsum.photos/id/29/800/540", "title": "Edge", "location": "West Coast", "category": "landscape" },
+    { "image": "https://picsum.photos/id/91/800/1000", "title": "Salt", "location": "Coast", "category": "portrait" },
+    { "image": "https://picsum.photos/id/180/800/600", "title": "Morning Café", "location": "Paris", "category": "street" }
+  ]
+}
